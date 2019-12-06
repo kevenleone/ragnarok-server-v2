@@ -1,5 +1,4 @@
 import 'reflect-metadata';
-import { config } from 'dotenv';
 import { ApolloServer, Config } from 'apollo-server-express';
 import Express from 'express';
 import { ConnectionOptions, createConnection, getConnectionOptions } from 'typeorm';
@@ -7,7 +6,6 @@ import createSchema from './utils/createSchema';
 import { defaults, logger } from './utils/globalMethods';
 
 (async () => {
-  config();
   const { RUN_PLAYGROUND, APP_NAME } = defaults;
   const { NODE_ENV, PORT } = process.env;
   const HttpPort = PORT || 3333;

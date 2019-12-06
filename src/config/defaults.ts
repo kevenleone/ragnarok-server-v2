@@ -1,4 +1,6 @@
 import CONSTANTS from '../utils/contants';
+import { config } from 'dotenv';
+config();
 
 const { RUN_PLAYGROUND, JWT_SECRET, APP_NAME, NODE_ENV, MAIL_HOST, MAIL_PORT, MAIL_USER, MAIL_PASS } = process.env;
 

@@ -72,3 +72,20 @@ export function normalizePagination(pagination: Pagination, defaultSize = 20): P
     skip,
   };
 }
+
+export function getMonsterRace(race: number) {
+  const races: any = {
+    0: { race: 'Amorfo', background: '#ABB' },
+    1: { race: 'Morto-Vivo', background: '#7159C1' },
+    2: { race: 'Bruto', background: '#FAB' },
+    3: { race: 'Planta', background: '#9A9A' },
+    4: { race: 'Inseto', background: '#AFA' },
+    5: { race: 'Peixe', background: '#008080' },
+    6: { race: 'Demônio', background: '#D7BDE2' },
+    7: { race: 'Anjo', background: '#E9F7EF' },
+    8: { race: 'Dragão', background: '#5D6D7E' },
+    9: { race: 'Humanóide', background: 'F6DDCC' },
+  };
+
+  return races[race] || { race: 'Unknown Race', background: '#ABB' };
+}
