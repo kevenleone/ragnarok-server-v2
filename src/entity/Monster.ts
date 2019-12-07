@@ -1,6 +1,8 @@
 import { Field, ObjectType } from 'type-graphql';
 import { PrimaryColumn, BaseEntity, Column, Entity } from 'typeorm';
 import { getMonsterRace } from '../utils/globalMethods';
+import { MonsterImage } from '../interfaces/Image';
+import defaults from '../config/defaults';
 
 @ObjectType()
 @Entity({ synchronize: true })
@@ -19,6 +21,16 @@ export class Monster extends BaseEntity {
   color(): string {
     const { background } = getMonsterRace(this.Race);
     return background;
+  }
+
+  @Field()
+  image(): MonsterImage {
+    const { id } = this;
+    const { MONSTER_IMAGE_URL } = defaults;
+    return {
+      animated: `${MONSTER_IMAGE_URL}/animated/${id}.gif`,
+      static: `${MONSTER_IMAGE_URL}/static/${id}.png`,
+    };
   }
 
   @Field()
