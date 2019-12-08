@@ -1,5 +1,6 @@
 import { Field, ID, ObjectType } from 'type-graphql';
 import { BaseEntity, PrimaryGeneratedColumn, Column, Entity } from 'typeorm';
+import { convertTimeSpawn } from '../utils/globalMethods';
 
 @ObjectType()
 @Entity()
@@ -11,6 +12,11 @@ export class MobPlace extends BaseEntity {
   @Field()
   @Column()
   map: string;
+
+  @Field()
+  spawn(): string {
+    return convertTimeSpawn(this.spawntime);
+  }
 
   @Field()
   @Column()

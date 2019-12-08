@@ -3,6 +3,7 @@ import { PrimaryColumn, BaseEntity, Column, Entity } from 'typeorm';
 import { getMonsterRace } from '../utils/globalMethods';
 import { MonsterImage } from '../interfaces/Image';
 import defaults from '../config/defaults';
+import { MobPlace } from './MobPlace';
 
 @ObjectType()
 @Entity({ synchronize: true })
@@ -31,6 +32,12 @@ export class Monster extends BaseEntity {
       animated: `${MONSTER_IMAGE_URL}/animated/${id}.gif`,
       static: `${MONSTER_IMAGE_URL}/static/${id}.png`,
     };
+  }
+
+  @Field(() => [MobPlace])
+  async mobplace(): Promise<MobPlace[]> {
+    const places = await MobPlace.find({ where: [{ monster: this.kName }, { mobId: this.id }] });
+    return places;
   }
 
   @Field()

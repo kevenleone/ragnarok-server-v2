@@ -93,3 +93,24 @@ export function getMonsterRace(race: number) {
 export function randomBetween(min: number, max: number): number {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
+
+export function convertTimeSpawn(millisec: number): string {
+  const seconds = Number((millisec / 1000).toFixed(1));
+  const minutes = Number((millisec / (1000 * 60)).toFixed(1));
+  const hours = Number((millisec / (1000 * 60 * 60)).toFixed(1));
+  const days = (millisec / (1000 * 60 * 60 * 24)).toFixed(1);
+
+  if (seconds < 60) {
+    if (seconds === 0.0) {
+      return 'Instantâneo';
+    } else {
+      return seconds + ' Sec';
+    }
+  } else if (minutes < 60) {
+    return minutes + ' Min';
+  } else if (hours < 24) {
+    return hours + ' Hrs';
+  } else {
+    return days + ' Days';
+  }
+}
