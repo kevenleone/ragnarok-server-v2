@@ -3,6 +3,9 @@ import gql from 'graphql-tag';
 import Logger from './logger';
 import Defaults from '../config/defaults';
 import { Pagination } from '../interfaces/Pagination';
+import { Monster } from '../entity/Monster';
+
+const statuses = ['HP', 'SP', 'EXP', 'JEXP', 'ATK1', 'ATK2', 'DEF', 'MDEF', 'STR', 'AGI', 'VIT', 'INT', 'DEX', 'LUK'];
 
 export const logger = Logger;
 export const defaults = Defaults;
@@ -113,4 +116,16 @@ export function convertTimeSpawn(millisec: number): string {
   } else {
     return days + ' Days';
   }
+}
+
+export function statusReferences(LV: number): Array<Promise<Monster>> {
+  const promises = [];
+  for (const status of statuses) {
+    const promise = Monster.createQueryBuilder('monster')
+      .select(`MAX(monster.${status})`, status)
+      .where({ LV })
+      .getRawOne();
+    promises.push(promise);
+  }
+  return promises;
 }

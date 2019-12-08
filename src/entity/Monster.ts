@@ -1,7 +1,8 @@
 import { Field, ObjectType } from 'type-graphql';
 import { PrimaryColumn, BaseEntity, Column, Entity } from 'typeorm';
-import { getMonsterRace } from '../utils/globalMethods';
+import { getMonsterRace, statusReferences } from '../utils/globalMethods';
 import { MonsterImage } from '../interfaces/Image';
+import { StatusReference } from '../interfaces/Monster';
 import defaults from '../config/defaults';
 import { MobPlace } from './MobPlace';
 
@@ -38,6 +39,20 @@ export class Monster extends BaseEntity {
   async mobplace(): Promise<MobPlace[]> {
     const places = await MobPlace.find({ where: [{ monster: this.kName }, { mobId: this.id }] });
     return places;
+  }
+
+  @Field(() => StatusReference)
+  async statusReference(): Promise<StatusReference> {
+    const promises = statusReferences(this.LV);
+    const data: StatusReference[] = await Promise.all(promises);
+    const statusReference: any = {};
+    for (const status of data) {
+      const [entries] = Object.entries(status);
+      const [sts, value] = entries;
+      const index: any = sts;
+      statusReference[index] = value;
+    }
+    return statusReference;
   }
 
   @Field()
