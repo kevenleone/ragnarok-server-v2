@@ -3,8 +3,9 @@ import { PrimaryColumn, BaseEntity, Column, Entity } from 'typeorm';
 import { getMonsterRace, statusReferences } from '../utils/globalMethods';
 import { MonsterImage } from '../interfaces/Image';
 import { StatusReference } from '../interfaces/Monster';
-import defaults from '../config/defaults';
 import { MobPlace } from './MobPlace';
+import { ItemDB } from './ItemDB';
+import defaults from '../config/defaults';
 
 @ObjectType()
 @Entity({ synchronize: true })
@@ -53,6 +54,23 @@ export class Monster extends BaseEntity {
       statusReference[index] = value;
     }
     return statusReference;
+  }
+
+  @Field(() => [ItemDB])
+  async monsterDrops(): Promise<ItemDB[]> {
+    const ids = [
+      this.Drop1id,
+      this.Drop2id,
+      this.Drop3id,
+      this.Drop4id,
+      this.Drop5id,
+      this.Drop6id,
+      this.Drop7id,
+      this.Drop8id,
+      this.Drop9id,
+      this.DropCardid,
+    ].filter(id => Boolean(id));
+    return ItemDB.findByIds(ids);
   }
 
   @Field()
