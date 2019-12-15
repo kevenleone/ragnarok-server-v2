@@ -89,6 +89,11 @@ export function normalizePagination(pagination: Pagination, defaultSize = 50): P
   };
 }
 
+export function initPagination(data: any): Pagination {
+  const page: Pagination = { pageIndex: data ? data.Page : 1 };
+  return page;
+}
+
 export function getMonsterRace(race: number) {
   return races[race] || { race: 'Unknown Race', background: '#ABB' };
 }

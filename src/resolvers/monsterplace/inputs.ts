@@ -4,4 +4,7 @@ import { Field, InputType } from 'type-graphql';
 export class MonsterPlaceFilter {
   @Field({ nullable: true })
   mobId: number;
+
+  @Field({ nullable: true })
+  Page: number;
 }
