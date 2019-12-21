@@ -1,6 +1,7 @@
-# Graphscript
-    
-<p align="center"> A simple boilerplate GraphQL using TypeScript and TypeORM </p>
+<h1 align="center">
+    <img src="https://github.com/kevenleone/ragnarok-react-native/raw/master/assets/images/1751.gif"/>
+    <br/>
+</h1>
 
 <p align="center">
   <a href="http://makeapullrequest.com">
@@ -11,40 +12,30 @@
   </a>
 </p>
 
+<center>
+Ragnarok database built with <a href="https://github.com/kevenleone/graphscript">Graphscript</a>
+</center>
 
-## Introduction 
+## :house: Getting started
 
-Graphscript is a simple boilerplate using the most recents technologies of Javascript, made with TypeScript. Creating a layer of service that possibility the management of Middlewares and Schemas.
+This project was created based on Graphscript structure, a useful and powerful GraphQL Boilerplate.
 
-## Getting started
+This project is responsable to serve a graphql server, basically connects to a database, get and process the data to be caught on Ragnarok APP -> https://github.com/kevenleone/ragnarok-react-native  
 
-1. Clone this repo using: `https://github.com/kevenleone/graphscript.git`
-2. Install the packages using your preference package manager ( yarn install or npm install )
-3. Rename the files
-    1. ormconfig.example.json to ormconfig.json
-    2. .env.example to .env
-4. Inside ormconfig.json configure with your preferences, the database, you can check the TypeORM Docs and select the best database option. https://typeorm.io/#/
-5. Run ( yarn dev or npm run dev ) and open on browser: http://localhost:3333/graphql
+## :zap: Installation and Instructions
 
-## Features
-
-Graphscript implement the following features
-
-- :zap: **Apollo GraphQL** - A GraphQL Server for Express Library
-- :books: **TypeORM** - ORM for TypeScript and JavaScript
-- :whale: **Docker** - To setup all the environment needs, ready to deploy
-- :clipboard: **Winston** - A logger for just about everything. 
-- :passport_control: **JWT** - For protection of GraphQL Content
-
-## Commands
+- Install the packages `npm install` or `yarn`
 - `npm run dev` - start the playground with hot-reload at `http://localhost:3333/playground`
-- `npm start` - start the playground pointing for dist index at `http://localhost:3333/playground`
 - `npm run build` - Builds the project: Typescript to Javascript
 
+## :handshake: **Contributing**
+If you liked the the project and want to cooperate feel free to fork this repository and send Pull Requests.
 
+All kinds of contributions are very welcome and appreciated
 
-### Others
-Project inspired on Krakren -> https://github.com/wendelfreitas/kraken
+-   ⭐️ Star the project
+-   🐛 Find and report issues
+-   📥 Submit PRs to help solve issues or add features
 
-## License
+## :book: License
 MIT license, Copyright (c) 2019 Keven Leone.
