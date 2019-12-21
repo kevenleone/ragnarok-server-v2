@@ -1,5 +1,5 @@
 <h1 align="center">
-    <img src="https://github.com/kevenleone/ragnarok-react-native/raw/master/assets/images/1751.gif"/>
+    <img src="https://static.ragnaplace.com/db/npc/gif/1916.gif"/>
     <br/>
 </h1>
 
@@ -12,9 +12,9 @@
   </a>
 </p>
 
-<center>
+<p align="center">
 Ragnarok database built with <a href="https://github.com/kevenleone/graphscript">Graphscript</a>
-</center>
+</p>
 
 ## :house: Getting started
 
