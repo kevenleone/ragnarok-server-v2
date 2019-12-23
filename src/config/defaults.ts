@@ -11,7 +11,7 @@ export default {
   JWT_SECRET: JWT_SECRET || 'MY_SECRET_SECRET',
   RUN_PLAYGROUND: RUN_PLAYGROUND || NODE_ENV !== 'production' ? true : false,
   MONSTER_IMAGE_URL: 'https://raw.githubusercontent.com/kevenleone/ragnarok-server/master/images',
-  MAP_URL: 'http://www3.worldrag.com/database/media/maps',
+  MAP_URL: 'http://file5.ratemyserver.net/maps',
   MAIL_HOST,
   MAIL_PORT,
   MAIL_USER,

@@ -1,6 +1,6 @@
 import { Field, ID, ObjectType } from 'type-graphql';
 import { BaseEntity, PrimaryGeneratedColumn, Column, Entity } from 'typeorm';
-import { convertTimeSpawn } from '../utils/globalMethods';
+import { convertTimeSpawn, defaults } from '../utils/globalMethods';
 import { Monster } from './Monster';
 
 @ObjectType()
@@ -29,7 +29,9 @@ export class MobPlace extends BaseEntity {
   }
 
   @Field({ nullable: true })
-  img: string;
+  img(): string {
+    return `${defaults.MAP_URL}/${this.map}.gif`;
+  }
 
   @Field({ nullable: true })
   @Column({ nullable: true })

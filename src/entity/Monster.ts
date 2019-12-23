@@ -73,6 +73,15 @@ export class Monster extends BaseEntity {
     return ItemDB.findByIds(ids);
   }
 
+  @Field(() => String)
+  async spawn(map?: string): Promise<string | null> {
+    if (map) {
+      const mobPlace = await MobPlace.findOne({ where: { mobId: this.id } });
+      return mobPlace ? `${mobPlace.quantity} / ${mobPlace.spawn()}` : null;
+    }
+    return null;
+  }
+
   @Field()
   @Column()
   Sprite: string;
