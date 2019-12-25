@@ -1,11 +1,11 @@
 import { Field, ObjectType } from 'type-graphql';
 import { PrimaryColumn, BaseEntity, Column, Entity } from 'typeorm';
-import { getMonsterRace, statusReferences } from '../utils/globalMethods';
-import { MonsterImage } from '../interfaces/Image';
-import { StatusReference } from '../interfaces/Monster';
+import { getMonsterRace, statusReferences, defaults } from '../utils/globalMethods';
+import { StatusReference, MonsterImage } from '../interfaces';
 import { MobPlace } from './MobPlace';
 import { ItemDB } from './ItemDB';
-import defaults from '../config/defaults';
+import { MonsterPlaceResolver } from '../resolvers/monsterplace/monster.place.resolver';
+import { MonsterPlaceFilter } from '../resolvers/monsterplace/inputs';
 
 @ObjectType()
 @Entity({ synchronize: true })
@@ -38,7 +38,9 @@ export class Monster extends BaseEntity {
 
   @Field(() => [MobPlace])
   async mobplace(): Promise<MobPlace[]> {
-    const places = await MobPlace.find({ where: [{ monster: this.kName }, { mobId: this.id }] });
+    const MobResolver = new MonsterPlaceResolver();
+    const data: MonsterPlaceFilter = { mobId: this.id, Page: 1 };
+    const places = await MobResolver.getMobPlaces(data);
     return places;
   }
 
@@ -74,12 +76,12 @@ export class Monster extends BaseEntity {
   }
 
   @Field(() => String)
-  async spawn(map?: string): Promise<string | null> {
+  async spawn(map?: string): Promise<string> {
     if (map) {
       const mobPlace = await MobPlace.findOne({ where: { mobId: this.id } });
-      return mobPlace ? `${mobPlace.quantity} / ${mobPlace.spawn()}` : null;
+      return mobPlace ? `${mobPlace.quantity} / ${mobPlace.spawn()}` : '';
     }
-    return null;
+    return '';
   }
 
   @Field()

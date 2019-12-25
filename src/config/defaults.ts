@@ -12,6 +12,8 @@ export default {
   RUN_PLAYGROUND: RUN_PLAYGROUND || NODE_ENV !== 'production' ? true : false,
   MONSTER_IMAGE_URL: 'https://raw.githubusercontent.com/kevenleone/ragnarok-server/master/images',
   MAP_URL: 'http://file5.ratemyserver.net/maps',
+  CARD_URL: 'http://file5.ratemyserver.net/items/small/card.gif',
+  ITEM_URL: 'http://www3.worldrag.com/database/media/item',
   MAIL_HOST,
   MAIL_PORT,
   MAIL_USER,

@@ -1,5 +1,6 @@
 import { Field, ID, ObjectType } from 'type-graphql';
 import { BaseEntity, PrimaryGeneratedColumn, Column, Entity } from 'typeorm';
+import defaults from '../config/defaults';
 
 @ObjectType()
 @Entity({ name: 'item_db' })
@@ -18,7 +19,9 @@ export class ItemDB extends BaseEntity {
 
   @Field()
   icon(): string {
-    return `http://www3.worldrag.com/database/media/item/${this.id}.gif`;
+    const { CARD_URL, ITEM_URL } = defaults;
+    const isCard = this.name_japanese.includes('Carta');
+    return isCard ? CARD_URL : `${ITEM_URL}/${this.id}.gif`;
   }
 
   @Field({ nullable: true })
