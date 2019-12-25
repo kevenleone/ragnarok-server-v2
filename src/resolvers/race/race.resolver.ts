@@ -1,5 +1,5 @@
 import { Query, Resolver } from 'type-graphql';
-import { Race } from '../../interfaces/Race';
+import { Race } from '../../interfaces';
 import { races } from '../../utils/globalMethods';
 import { MonsterResolver } from '../monster/monster.resolver';
 

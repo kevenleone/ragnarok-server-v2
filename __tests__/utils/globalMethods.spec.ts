@@ -1,5 +1,5 @@
-import { MailerConf, normalizePagination, getGraphqlOperation, HttpError } from '../../src/utils/globalMethods';
-import { Pagination } from '../../src/interfaces/Pagination';
+import { normalizePagination, getGraphqlOperation, HttpError } from '../../src/utils/globalMethods';
+import { Pagination } from '../../src/interfaces';
 
 const page: Pagination = {
   pageIndex: 1,
@@ -19,13 +19,6 @@ describe('Should works', () => {
     page.pageSize = 10;
     const getPage = normalizePagination(page);
     expect(getPage).toStrictEqual({ ...page, skip: 10, take: 10 });
-  });
-
-  xit('Get base mailer config', async () => {
-    process.env = Object.assign(process.env, { MAIL_HOST: 'localhost', MAIL_PORT: 'value' });
-
-    const config = await MailerConf();
-    console.log(config);
   });
 
   it('Get Query Operation by Query', () => {

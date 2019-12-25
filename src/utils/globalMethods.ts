@@ -2,7 +2,7 @@ import nodemailer from 'nodemailer';
 import gql from 'graphql-tag';
 import Logger from './logger';
 import Defaults from '../config/defaults';
-import { Pagination } from '../interfaces/Pagination';
+import { Pagination, MailConfig } from '../interfaces';
 import { Monster } from '../entity/Monster';
 
 const statuses = ['HP', 'SP', 'EXP', 'JEXP', 'ATK1', 'ATK2', 'DEF', 'MDEF', 'STR', 'AGI', 'VIT', 'INT', 'DEX', 'LUK'];
@@ -23,6 +23,25 @@ export const races: any = {
   9: { race: 'Humanóide', background: '#F6DDCC' },
 };
 
+export async function MailerCredentials(): Promise<MailConfig> {
+  const { MAIL_HOST, MAIL_PORT, MAIL_USER, MAIL_PASS, ENVIRONMENT } = defaults;
+  const config: MailConfig = {
+    host: MAIL_HOST,
+    port: MAIL_PORT,
+    auth: {
+      user: MAIL_USER,
+      pass: MAIL_PASS,
+    },
+  };
+  if (ENVIRONMENT !== 'production' && !MAIL_USER && !MAIL_PASS) {
+    const { user, pass } = await nodemailer.createTestAccount();
+    config.auth.user = user;
+    config.auth.pass = pass;
+  }
+
+  return config;
+}
+
 export function sendError(message: string, shouldReturn = false): Error {
   logger.error(message);
   const Err: Error = new Error(message);
@@ -34,25 +53,6 @@ export function sendError(message: string, shouldReturn = false): Error {
 
 export function HttpError(message: string): Error {
   return sendError(message, true);
-}
-
-export async function MailerConf() {
-  const { MAIL_HOST, MAIL_PORT, MAIL_USER, MAIL_PASS, ENVIRONMENT } = defaults;
-  const config = {
-    host: MAIL_HOST,
-    port: MAIL_PORT,
-    auth: {
-      user: MAIL_USER,
-      pass: MAIL_PASS,
-    },
-  };
-  if (ENVIRONMENT !== 'production') {
-    const { user, pass } = await nodemailer.createTestAccount();
-    config.auth.user = user;
-    config.auth.pass = pass;
-  }
-
-  return config;
 }
 
 export function getGraphqlOperation(graphqlQuery: any) {

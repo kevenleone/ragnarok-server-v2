@@ -1,7 +1,7 @@
 import { Query, Resolver, Arg } from 'type-graphql';
 import { MobPlace } from '../../entity/MobPlace';
 import { MonsterPlaceFilter } from './inputs';
-import { Pagination } from '../../interfaces/Pagination';
+import { Pagination } from '../../interfaces';
 import { initPagination, normalizePagination, defaults } from '../../utils/globalMethods';
 
 @Resolver()

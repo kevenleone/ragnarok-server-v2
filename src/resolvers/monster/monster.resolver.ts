@@ -2,7 +2,7 @@ import { Query, Resolver, Arg } from 'type-graphql';
 import { Monster } from '../../entity/Monster';
 import { MonsterFilter } from './inputs';
 import { randomBetween, normalizePagination } from '../../utils/globalMethods';
-import { Pagination } from '../../interfaces/Pagination';
+import { Pagination } from '../../interfaces';
 
 @Resolver(Monster)
 export class MonsterResolver {
