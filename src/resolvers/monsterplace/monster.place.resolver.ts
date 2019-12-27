@@ -1,9 +1,9 @@
+import { In as IN } from 'typeorm';
 import { Query, Resolver, Arg } from 'type-graphql';
 import { MobPlace } from '../../entity/MobPlace';
 import { MonsterPlaceFilter } from './inputs';
 import { Pagination } from '../../interfaces';
 import { initPagination, normalizePagination, defaults } from '../../utils/globalMethods';
-
 @Resolver()
 export class MonsterPlaceResolver {
   @Query(() => [MobPlace], { name: `getMonsterPlace` })
@@ -19,6 +19,9 @@ export class MonsterPlaceResolver {
       .skip(skip)
       .take(take)
       .getRawMany();
+    if (data?.mobId) {
+      return MobPlace.find({ where: { mobId: data.mobId, map: IN(places.map(place => place.map)) } });
+    }
     return places.map((place, id) => ({ id: Number(id), img: `${defaults.MAP_URL}/${place.map}.gif`, ...place }));
   }
 
