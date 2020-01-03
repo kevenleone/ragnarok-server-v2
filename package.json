@@ -12,7 +12,8 @@
     "test": "jest --detectOpenHandles",
     "coverage": "jest --coverage",
     "lint": "eslint src/**/*.ts",
-    "lint:fix": "eslint src/**/*.ts --fix"
+    "lint:fix": "eslint src/**/*.ts --fix",
+    "commit": "npx git-cz"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",

@@ -28,11 +28,17 @@ export class Monster extends BaseEntity {
 
   @Field()
   image(): MonsterImage {
-    const { id } = this;
-    const { MONSTER_IMAGE_URL } = defaults;
+    const { id, DropCardid } = this;
+    const { MONSTER_IMAGE_URL, ITEM_CARD_ART } = defaults;
+
+    const isCard = Boolean(DropCardid);
+
     return {
       animated: `${MONSTER_IMAGE_URL}/animated/${id}.gif`,
       static: `${MONSTER_IMAGE_URL}/static/${id}.png`,
+      art: isCard
+        ? `${ITEM_CARD_ART}/${DropCardid}.png`
+        : 'https://i.pinimg.com/originals/fc/a3/b4/fca3b45a2f69cfe3aade9f91217b4182.png',
     };
   }
 

@@ -7,4 +7,7 @@ export class MonsterImage {
 
   @Field({ nullable: true })
   static: string;
+
+  @Field({ nullable: true })
+  art: string;
 }

@@ -1,3 +1,4 @@
+import { Not } from 'typeorm';
 import { Query, Resolver, Arg } from 'type-graphql';
 import { Monster } from '../../entity/Monster';
 import { MonsterFilter } from './inputs';
@@ -44,5 +45,25 @@ export class MonsterResolver {
     const monsters = await this.getMonsterFilter({ Race: id, iName: '', Page: 0 });
     const index = randomBetween(0, monsters.length);
     return monsters[index];
+  }
+
+  @Query(() => [Monster], { name: `getMonstersGalery` })
+  async getMonstersGalery(): Promise<Monster[]> {
+    const races = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    const monsters = [];
+    for (const race of races) {
+      monsters.push(this.getMonsterByRace(race));
+    }
+    return Promise.all(monsters);
+  }
+
+  @Query(() => Monster, { name: `getMonsterRandom` })
+  async getMonsterRandom(): Promise<Monster | null> {
+    const monsters = await Monster.find({ where: { DropCardid: Not(0) } });
+    if (monsters && monsters.length) {
+      const index = randomBetween(0, monsters.length);
+      return monsters[index];
+    }
+    return null;
   }
 }
