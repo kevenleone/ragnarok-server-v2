@@ -8,7 +8,7 @@ import { MonsterPlaceResolver } from '../resolvers/monsterplace/monster.place.re
 import { MonsterPlaceFilter } from '../resolvers/monsterplace/inputs';
 
 @ObjectType()
-@Entity({ synchronize: true })
+@Entity({ synchronize: true, name: 'mob_db' })
 export class Monster extends BaseEntity {
   @PrimaryColumn()
   @Field()

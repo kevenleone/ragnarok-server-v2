@@ -1,4 +1,5 @@
 import 'reflect-metadata';
+import cors from 'cors';
 import { ApolloServer, Config } from 'apollo-server-express';
 import Express from 'express';
 import { ConnectionOptions, createConnection, getConnectionOptions } from 'typeorm';
@@ -31,6 +32,8 @@ import { defaults, logger } from './utils/globalMethods';
 
   const apolloServer = new ApolloServer(apolloServerConfig);
   const server = Express();
+
+  server.use(cors());
 
   apolloServer.applyMiddleware({
     app: server,
