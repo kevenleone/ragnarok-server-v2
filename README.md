@@ -18,6 +18,8 @@ Ragnarok database built with <a href="https://github.com/kevenleone/graphscript"
 
 ## :house: Getting started
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/kevenleone/ragnarok-server-v2.svg)](https://greenkeeper.io/)
+
 This project was created based on Graphscript structure, a useful and powerful GraphQL Boilerplate.
 
 This project is responsable to serve a graphql server, basically connects to a database, get and process the data to be caught on Ragnarok APP -> https://github.com/kevenleone/ragnarok-react-native  
