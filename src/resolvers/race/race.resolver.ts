@@ -1,12 +1,14 @@
-import { Query, Resolver } from 'type-graphql';
+import { Query, Resolver, UseMiddleware } from 'type-graphql';
 import { Race } from '../../interfaces';
 import { races } from '../../utils/globalMethods';
 import { MonsterResolver } from '../monster/monster.resolver';
+import { isAuth } from '../../middlewares/isAuth';
 
 const MonsterClass = new MonsterResolver();
 
 @Resolver()
 export class RaceResolver {
+  @UseMiddleware(isAuth)
   @Query(() => [Race], { name: `getRaces` })
   async getRaces(): Promise<Race[]> {
     const data: Race[] = [];
